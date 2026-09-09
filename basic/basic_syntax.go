@@ -26,19 +26,17 @@ type Greeter interface {
 func sayHello(name string) {
 	fmt.Println("Привет, " + name)
 }
-/*
-func main() {
-	fmt.Println("Привет, Мир!")
 
-	// Переменные
-	var name string = "Иван"
-	var age int = 30
-
-	if age > 18 {
-		fmt.Println("Вы взрослый")
-	} else {
-		fmt.Println("Вы несовершеннолетний")
-	}
+func test(){
+	// Инициализация структуры
+	p := Person{Name: "Иван", Age: 30}
+	print(p)
+	// Восстановление после паники (defer должен стоять в начале функции)
+	defer func() {
+		if err := recover(); err != nil {
+			fmt.Printf("Восстановлено от паники: %v\n", err)
+		}
+	}()
 
 	// Циклы
 	for i := 0; i < 3; i++ { // Уменьшил до 3 для краткости вывода
@@ -46,7 +44,7 @@ func main() {
 	}
 
 	// Вызов внешней функции
-	sayHello(name)
+	sayHello("Иван")
 
 	// Срезы и карты (добавил нижнее подчеркивание _, чтобы скрыть ошибку "not used")
 	_ = []int{1, 2, 3}
@@ -60,30 +58,24 @@ func main() {
 		//mutex.Unlock()
 	}()
 
-	// Восстановление после паники (defer должен стоять в начале функции)
-	defer func() {
-		if err := recover(); err != nil {
-			fmt.Printf("Восстановлено от паники: %v\n", err)
-		}
-	}()
-	/*
-	// Инициализация структуры
-	_ = Person{Name: "Иван", Age: 30}
+	// Переменные
+	var name string = "Иван"
+	var age int = 30
 
-	// База данных (для компиляции добавим проверку err)
-	db, err := sql.Open("sqlite3", "./example.db")
-	if err != nil {
-		log.Fatal(err)
+	print(name)
+	if age > 18 {
+		fmt.Println("Вы взрослый")
+	} else {
+		fmt.Println("Вы несовершеннолетний")
 	}
-	defer db.Close()
-
+	/*
 	// Настройка роутера Gorilla Mux (Аналог Express)
 	r := mux.NewRouter()
 	r.HandleFunc("/api", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("API Gateway:", r.URL.Path)
 		w.Write([]byte("Привет от API Gateway!"))
-	})
+	})*/
 
 	// Запуск HTTP-сервера (Закомментировано, чтобы код шел дальше, а не зависал на этой строчке)
-	// http.ListenAndServe(":8080", r)*/
-//}
+	// http.ListenAndServe(":8080", r)
+}
